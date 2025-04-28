@@ -1,1 +1,25 @@
-<p>Submit any blank file here to see a random number generated for your submission. If you get lucky, you might reach the top of the leaderboard.</p>
+
+<h1>Submission Guidelines</h1>
+
+<p>Participants are required to submit a JSON file containing their predictions on the test set. Each prediction should follow this structure:</p>
+
+<pre>
+[
+    {
+        "image_id": "00001",
+        "bbox": [x_min, y_min, width, height],
+        "score": 0.95,
+        "category_id": 1
+    },
+    ...
+]
+</pre>
+
+<ul>
+  <li><strong>image_id:</strong> ID of the image (without file extension).</li>
+  <li><strong>bbox:</strong> [x_min, y_min, width, height] format bounding box (pixel values).</li>
+  <li><strong>score:</strong> Confidence score between 0 and 1.</li>
+  <li><strong>category_id:</strong> Defect category number according to provided label map.</li>
+</ul>
+
+<p>Submissions must adhere to this format for successful evaluation.</p>
