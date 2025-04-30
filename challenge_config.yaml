@@ -1,6 +1,6 @@
 # If you are not sure what all these fields mean, please refer our documentation here:
 # https://evalai.readthedocs.io/en/latest/configuration.html
-title: Few-shot Industrial Screen Defect Detection Challenge 2025
+title: Few-shot Industrial Screen Defect-Detection-Challenge-2025
 short_description: Detect defects on industrial screens with few-shot examples.
 description: templates/description.html
 evaluation_details: templates/evaluation_details.html
