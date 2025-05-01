@@ -102,12 +102,25 @@ def evaluate(test_annotation_file, user_annotation_file, phase_codename, **kwarg
                 "ap_per_class": {k: round(v * 100, 2) for k, v in ap_per_class.items()}
             }
         }
+    # except Exception as e:
+    #     return {
+    #         "result": [{
+    #             f"{phase_codename}_split": {"mAP@0.95": 0.0}
+    #         }],
+    #         "submission_result": {"mAP@0.95": 0.0},
+    #         "error": str(e)
+    #     }
     except Exception as e:
+        print(f"❌ 评估异常: {e}")
         return {
             "result": [{
-                f"{phase_codename}_split": {"mAP@0.95": 0.0}
+                f"{phase_codename}_split": {
+                "mAP@0.95": 0.0
+                }
             }],
-            "submission_result": {"mAP@0.95": 0.0},
+            "submission_result": {
+            "mAP@0.95": 0.0
+            },
             "error": str(e)
         }
     finally:
