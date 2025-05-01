@@ -102,7 +102,7 @@ challenge_phases:
     start_date: 2019-01-01 00:00:00
     end_date: 2099-05-24 23:59:59
     #test_annotation_file: annotations/test_annotations_testsplit.json
-    test_annotation_file: annotations/test_annotations_testsplit.json
+    test_annotation_file: annotations/test_gt_xml.zip
     codename: test
     max_submissions_per_day: 5
     max_submissions_per_month: 50
