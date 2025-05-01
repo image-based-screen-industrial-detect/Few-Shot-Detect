@@ -8,14 +8,14 @@ def get_curr_working_dir():
 def run():
     cwd = get_curr_working_dir()
     sys.path.append(cwd)
-    sys.path.append(f"{cwd}/challenge_data/challenge_1")
+    sys.path.append(f"{cwd}/challenge_data/challenge_1/evaluation_script")
 
     challenge_id = 1
     phase_codename = "test"
     annotation_file_path = f"{cwd}/annotations/test_phase_annotations.zip"
     user_submission_file_path = f"{cwd}/annotations/test_phase_submission.zip"
 
-    CHALLENGE_IMPORT_STRING = "challenge_data.challenge_1"
+    CHALLENGE_IMPORT_STRING = "challenge_data.challenge_1.evaluation_script"
     challenge_module = importlib.import_module(CHALLENGE_IMPORT_STRING)
 
     EVALUATION_SCRIPTS = {challenge_id: challenge_module}
