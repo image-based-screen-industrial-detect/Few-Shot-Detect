@@ -32,7 +32,7 @@ def compute_iou(box1, box2):
     union_area = box1_area + box2_area - inter_area
     return inter_area / union_area if union_area > 0 else 0
 
-def evaluate(test_annotation_file, user_annotation_file, phase_codename, **kwargs):
+def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
     IOU_THRESHOLD = 0.95
     temp_dir = tempfile.mkdtemp()
     gt_dir = os.path.join(temp_dir, "gt")
@@ -43,7 +43,7 @@ def evaluate(test_annotation_file, user_annotation_file, phase_codename, **kwarg
     try:
         with zipfile.ZipFile(test_annotation_file, "r") as zip_ref:
             zip_ref.extractall(gt_dir)
-        with zipfile.ZipFile(user_annotation_file, "r") as zip_ref:
+        with zipfile.ZipFile(user_submission_file, "r") as zip_ref:
             zip_ref.extractall(pred_dir)
 
         classwise_precisions = {}
