@@ -25,9 +25,8 @@ leaderboard:
   - id: 1
     schema:
       {
-          labels:
-            - "mAP@0.95"
-          default_order_by: "mAP@0.95"
+        "labels": ["mAP@0.95"],
+        "default_order_by": "mAP@0.95"
       }
 
 challenge_phases:
