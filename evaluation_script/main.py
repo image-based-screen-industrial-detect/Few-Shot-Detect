@@ -92,16 +92,26 @@ def evaluate(test_annotation_file, user_annotation_file, phase_codename, **kwarg
         ap_per_class = {cls: np.mean(prec) for cls, prec in classwise_precisions.items()}
         map_095 = float(np.mean(list(ap_per_class.values()))) if ap_per_class else 0.0
         rounded_map = round(map_095 * 100, 2)
+        # return {
+        #     "result": [{
+        #         f"{phase_codename}_split": {"mAP@0.95": rounded_map}
+        #     }],
+        #     "submission_result": {"mAP@0.95": rounded_map},
+        #     "metadata": {
+        #         "mean_ap_0.95": rounded_map,
+        #         "ap_per_class": {k: round(v * 100, 2) for k, v in ap_per_class.items()}
+        #     }
+        # }
         return {
-            "result": [{
-                f"{phase_codename}_split": {"mAP@0.95": rounded_map}
-            }],
-            "submission_result": {"mAP@0.95": rounded_map},
-            "metadata": {
-                "mean_ap_0.95": rounded_map,
-                "ap_per_class": {k: round(v * 100, 2) for k, v in ap_per_class.items()}
+                "result": [{
+                    "test_split": {"mAP@0.95": rounded_map}
+                }],
+                "submission_result": {"mAP@0.95": rounded_map},
+                "metadata": {
+                    "mean_ap_0.95": rounded_map,
+                    "ap_per_class": {k: round(v * 100, 2) for k, v in ap_per_class.items()}
+                }
             }
-        }
     # except Exception as e:
     #     return {
     #         "result": [{
