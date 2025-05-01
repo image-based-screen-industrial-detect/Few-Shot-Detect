@@ -33,6 +33,7 @@ def compute_iou(box1, box2):
     return inter_area / union_area if union_area > 0 else 0
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
+    print(f"🚀 Starting Evaluation for Phase: {phase_codename}")
     IOU_THRESHOLD = 0.95
     temp_dir = tempfile.mkdtemp()
     gt_dir = os.path.join(temp_dir, "gt")
@@ -94,12 +95,17 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         map_095 = float(np.mean(list(ap_per_class.values()))) if ap_per_class else 0.0
         rounded_map = round(map_095 * 100, 2)
 
+        result_entry = {
+            "mAP@0.95": rounded_map
+        }
+
+        print("✅ Evaluation completed.")
+
         return {
             "result": [{
-                phase_codename: {
-                    "mAP@0.95": rounded_map
-                }
+                f"{phase_codename}_split": result_entry
             }],
+            "submission_result": result_entry,
             "metadata": {
                 "mean_ap_0.95": rounded_map,
                 "ap_per_class": {k: round(v * 100, 2) for k, v in ap_per_class.items()}
@@ -107,12 +113,16 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         }
 
     except Exception as e:
+        print(f"❌ Evaluation error: {e}")
         return {
             "result": [{
-                phase_codename: {
+                f"{phase_codename}_split": {
                     "mAP@0.95": 0.0
                 }
             }],
+            "submission_result": {
+                "mAP@0.95": 0.0
+            },
             "error": str(e)
         }
     finally:
